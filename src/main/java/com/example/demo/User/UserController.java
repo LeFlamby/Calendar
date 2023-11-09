@@ -14,22 +14,23 @@ public class UserController {
 
     private final UserService userService;
     @GetMapping
-    ResponseEntity<List<User>> getAll() {
+    ResponseEntity<List<UserDTO>> getAll() {
         return new ResponseEntity<>(userService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}") 
-    ResponseEntity<User> getById(@PathVariable Long id) {
+    ResponseEntity<UserDTO> getById(@PathVariable Long id) {
         return new ResponseEntity<>(userService.getById(id), HttpStatus.OK);
     }
     @PostMapping
     ResponseEntity<User> create(@RequestBody User user) {
         return new ResponseEntity<>(userService.create(user), HttpStatus.CREATED);
     }
-    @PutMapping("/{id}")
+   /*@PutMapping("/{id}")
     ResponseEntity<User> update(@PathVariable Long id, @RequestBody User user) {
         return new ResponseEntity<>(userService.update(id, user), HttpStatus.OK);
     }
+*/
     @DeleteMapping("{id}")
     ResponseEntity<?> delete(@PathVariable Long id) {
         userService.delete(id);

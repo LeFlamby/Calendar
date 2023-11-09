@@ -1,6 +1,5 @@
 package com.example.demo.Style;
 
-import com.example.demo.User.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

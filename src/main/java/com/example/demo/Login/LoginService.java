@@ -3,6 +3,7 @@ package com.example.demo.Login;
 
 import java.util.regex.Pattern;
 
+import com.example.demo.User.UserDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -39,15 +40,17 @@ public class LoginService {
                 .orElseThrow(() -> new RuntimeException("Le pseudo n'existe pas"));
     }
 
-    public User login(User user) {
+    public UserDTO login(User user) {
         User existingUser = getUsername(user.getUsername());
 
         if (!checkPassword(user.getPassword(), existingUser.getPassword())) {
             throw new RuntimeException("Mot de passe incorrect");
         }
 
-        existingUser.setPassword("hidden");
+        UserDTO userDTO = new UserDTO();
+        userDTO.setId(existingUser.getId());
+        userDTO.setUsername(existingUser.getUsername());
 
-        return existingUser;
+        return userDTO;
     }
 }
