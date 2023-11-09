@@ -38,7 +38,7 @@ public class SecurityConfig {
                                 "/user", "/user/{id}", "/note", "/note/{id}", "/event", "/event/{id}"
                                           , "calendar", "calendar/{id}", "style", "style/{id}")
                         .hasAnyRole( "USER")
-                        .requestMatchers("")
+                        .anyRequest()
                         .authenticated())
 
 

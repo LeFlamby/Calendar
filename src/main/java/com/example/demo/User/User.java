@@ -3,6 +3,7 @@ package com.example.demo.User;
 import com.example.demo.Event.Event;
 import com.example.demo.Note.Note;
 import com.example.demo.calendar.Calendar;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
@@ -23,6 +24,7 @@ public class User {
     private Long id;
 
     private String username;
+
     private String password;
 
     @ManyToMany(cascade = CascadeType.PERSIST)

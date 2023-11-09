@@ -15,8 +15,6 @@ import java.util.Set;
 @Service
 public class GeneralService {
 
-
-
     @Autowired
     UserRepository userRepository;
 

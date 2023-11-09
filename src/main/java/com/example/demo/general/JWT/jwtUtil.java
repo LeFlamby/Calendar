@@ -25,10 +25,11 @@ public class jwtUtil {
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
-    private static String createToken(Map<String, Object> claims) {
+    private static String createToken(Map<String, Object> claims, User user) {
         return Jwts
                 .builder()
                 .setClaims(claims)
+                .setSubject(user.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60  ))
                 .signWith(getKey(), SignatureAlgorithm.HS256)
@@ -39,9 +40,9 @@ public class jwtUtil {
     public static String generateToken(User user){ // on crée un token avec les claims, les claims sont les
         // données que l'on veut stocker dans le token ***** A REMPLACER AVEC UN DTO
         Map<String, Object> claims = new HashMap<>();
-        claims.put("USER", user.getUsername());
-        claims.put("role", "USER");
-        return createToken(claims);
+        claims.put("subject:", user.getUsername());
+        claims.put("role", "ROLE_USER");
+        return createToken(claims, user);
     }
 
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
