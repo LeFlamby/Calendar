@@ -58,7 +58,7 @@ public class LoginController {
             // data.put renvoie la valeur associée à la clé spécifiée
 
             data.put("token", token);
-            data.put("Request", "User logged in" + token);
+            data.put("Request", "User logged in");
             return new ResponseEntity<>(new ApiResponse<>(data), HttpStatus.OK);
         } catch (Exception e) {
             System.out.println(e.getMessage());
