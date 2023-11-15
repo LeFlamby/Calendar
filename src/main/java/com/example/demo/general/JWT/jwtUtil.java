@@ -2,6 +2,7 @@ package com.example.demo.general.JWT;
 
 import com.example.demo.User.User;
 
+import com.example.demo.User.UserDTO;
 import org.springframework.stereotype.Component;
 import java.security.Key;
 import java.util.Date;
@@ -25,7 +26,7 @@ public class jwtUtil {
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
-    private static String createToken(Map<String, Object> claims, User user) {
+    private static String createToken(Map<String, Object> claims, UserDTO user) {
         return Jwts
                 .builder()
                 .setClaims(claims)
@@ -37,10 +38,10 @@ public class jwtUtil {
     }
 
 
-    public static String generateToken(User user){ // on crée un token avec les claims, les claims sont les
+    public static String generateToken(UserDTO user){ // on crée un token avec les claims, les claims sont les
         // données que l'on veut stocker dans le token ***** A REMPLACER AVEC UN DTO
         Map<String, Object> claims = new HashMap<>();
-        claims.put("subject:", user.getUsername());
+        claims.put("id", user.getId());   /// WTF!!!
         claims.put("role", "ROLE_USER");
         return createToken(claims, user);
     }

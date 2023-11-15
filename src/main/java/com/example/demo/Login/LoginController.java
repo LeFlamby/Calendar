@@ -3,6 +3,7 @@ package com.example.demo.Login;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.example.demo.User.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -52,8 +53,9 @@ public class LoginController {
         // contient un objet et un message
         HashMap<String, Object> data = new HashMap<>(); // le hashmap est un objet qui contient des clés et des valeurs
         try {
-            loginService.login(user); // on recupère le user
-            String token = jwtUtil.generateToken(user); // on génère un token
+             UserDTO userDTO = loginService.login(user);
+             // on recupère le user
+            String token = jwtUtil.generateToken(userDTO); // on génère un token
             // data.put renvoie la valeur associée à la clé spécifiée
 
             data.put("token", token);

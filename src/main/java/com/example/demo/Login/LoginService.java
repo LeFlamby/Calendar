@@ -37,8 +37,10 @@ public class LoginService {
     }
 
     public User getUsername(String username) {
-        return userRepository.findByUsername(username)
+        User userToReturn;
+        userToReturn =  userRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("Le pseudo n'existe pas"));
+return userToReturn;
     }
 
     public UserDTO login(User user) {
@@ -50,7 +52,6 @@ public class LoginService {
         UserDTO userDTO = new UserDTO();
         userDTO.setId(existingUser.getId());
         userDTO.setUsername(existingUser.getUsername());
-
         return userDTO;
     }
 }
