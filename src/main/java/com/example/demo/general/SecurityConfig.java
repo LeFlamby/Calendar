@@ -34,9 +34,8 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/register", "/login", "/home")
                         .permitAll()
-                        .requestMatchers(
-                                "/user", "/user/{id}", "/note", "/note/{id}", "/event", "/event/{id}"
-                                          , "calendar", "calendar/{id}", "style", "style/{id}")
+                        .requestMatchers("/user", "/user/{id}", "/note", "/note/{id}", "/event", "/event/{id}"
+                                , "calendar", "calendar/{id}", "style", "style/{id}")
                         .hasAnyRole( "USER")
                         .anyRequest()
                         .authenticated())

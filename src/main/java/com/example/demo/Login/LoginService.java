@@ -18,6 +18,7 @@ public class LoginService {
     private final UserRepository userRepository;
 
 
+
     public boolean checkHashedPassword(String password) {
         if (password != null) {
             Pattern pattern = Pattern.compile("(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?=\\S+$).{8,}");
@@ -42,7 +43,6 @@ public class LoginService {
 
     public UserDTO login(User user) {
         User existingUser = getUsername(user.getUsername());
-
         if (!checkPassword(user.getPassword(), existingUser.getPassword())) {
             throw new RuntimeException("Mot de passe incorrect");
         }

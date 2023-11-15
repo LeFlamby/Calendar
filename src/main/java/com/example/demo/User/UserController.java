@@ -26,11 +26,11 @@ public class UserController {
     ResponseEntity<User> create(@RequestBody User user) {
         return new ResponseEntity<>(userService.create(user), HttpStatus.CREATED);
     }
-   /*@PutMapping("/{id}")
-    ResponseEntity<User> update(@PathVariable Long id, @RequestBody User user) {
+   @PutMapping("/{id}")
+    ResponseEntity<UserDTO> update(@PathVariable Long id, @RequestBody User user) {
         return new ResponseEntity<>(userService.update(id, user), HttpStatus.OK);
     }
-*/
+
     @DeleteMapping("{id}")
     ResponseEntity<?> delete(@PathVariable Long id) {
         userService.delete(id);

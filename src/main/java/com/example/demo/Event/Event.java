@@ -22,7 +22,7 @@ public class Event {
     private long id;
 
     String type;
-    String name;
+    String title;
     Date start;
     Date end;
     // length

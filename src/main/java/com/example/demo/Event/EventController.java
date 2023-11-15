@@ -10,6 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/event")
 @RequiredArgsConstructor
+
 public class EventController {
 
     private final EventService service;
@@ -27,11 +28,11 @@ public class EventController {
     ResponseEntity<Event> create(@RequestBody Event event) {
         return new ResponseEntity<>(service.create(event), HttpStatus.CREATED);
     }
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     ResponseEntity<Event> update(@PathVariable Long id, @RequestBody Event event) {
         return new ResponseEntity<>(service.update(id, event), HttpStatus.OK);
     }
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     ResponseEntity<?> delete(@PathVariable Long id) {
         service.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);

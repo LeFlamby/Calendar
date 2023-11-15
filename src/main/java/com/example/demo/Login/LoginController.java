@@ -20,7 +20,6 @@ import com.example.demo.general.JWT.jwtUtil;
 import com.example.demo.general.ApiResponse;
 
 @Controller
-@CrossOrigin(origins = "http://localhost:4200")
 public class LoginController {
 
 

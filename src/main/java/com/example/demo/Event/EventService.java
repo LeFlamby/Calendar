@@ -27,7 +27,7 @@ public class EventService {
     public Event update(Long id, Event event) {
         Event eventToUpdate = getById(id);
         eventToUpdate.setType(event.getType());
-        eventToUpdate.setName(event.getName());
+        eventToUpdate.setTitle(event.getTitle());
         eventToUpdate.setStart(event.getStart());
         eventToUpdate.setEnd(event.getEnd());
         eventToUpdate.setDescription(event.getDescription());

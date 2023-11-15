@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lombok.NoArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
+    private final BCryptPasswordEncoder bcryptEncoder;
 
     private final UserRepository userRepository;
 
@@ -42,14 +45,20 @@ public class UserService {
         return userRepository.save(user);
     }
 
-   /* public User update(Long id, User user) {
-        User userToUpdate = getById(id);
-        userToUpdate.setUsername(user.getUsername());
-        userToUpdate.setPassword(user.getPassword());
-        return userRepository.save(userToUpdate);
-    }
 
-    */
+    public UserDTO update(Long id, User user) {
+        User userToUpdate = userRepository.findById(id).get();
+        if( user.getUsername() != null) {
+            userToUpdate.setUsername(user.getUsername());
+        }
+        if ( user.getPassword() != null){
+            String hashedPassword = bcryptEncoder.encode(user.getPassword());
+            userToUpdate.setPassword(hashedPassword);}
+        userRepository.save(userToUpdate);
+        UserDTO userDTO = new UserDTO();
+        userDTO.setUsername(userToUpdate.getUsername());
+     return userDTO;
+    }
 
    public void delete(Long id) {
         userRepository.deleteById(id);
