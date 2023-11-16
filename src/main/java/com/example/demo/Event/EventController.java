@@ -28,6 +28,8 @@ public class EventController {
     ResponseEntity<Event> create(@RequestBody Event event) {
         return new ResponseEntity<>(service.create(event), HttpStatus.CREATED);
     }
+
+
     @PutMapping("/{id}")
     ResponseEntity<Event> update(@PathVariable Long id, @RequestBody Event event) {
         return new ResponseEntity<>(service.update(id, event), HttpStatus.OK);
