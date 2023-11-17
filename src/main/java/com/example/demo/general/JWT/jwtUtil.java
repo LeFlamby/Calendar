@@ -69,6 +69,10 @@ public class jwtUtil {
         return extractClaim(token, Claims::getSubject);
     }
 
+    public String extractIdAsString(String token) {
+        return extractClaim(token, claims -> claims.get("id", String.class));
+    }
+
 
     public Boolean validateToken(String token,
                                  CustomUserDetails userDetails) {

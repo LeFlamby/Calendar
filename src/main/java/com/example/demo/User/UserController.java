@@ -1,5 +1,9 @@
 package com.example.demo.User;
 
+
+import com.example.demo.general.JWT.jwtUtil;
+import com.example.demo.Event.Event;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +17,7 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    private  final jwtUtil jwtUtil;
     @GetMapping
     ResponseEntity<List<UserDTO>> getAll() {
         return new ResponseEntity<>(userService.getAll(), HttpStatus.OK);
@@ -22,6 +27,7 @@ public class UserController {
     ResponseEntity<UserDTO> getById(@PathVariable Long id) {
         return new ResponseEntity<>(userService.getById(id), HttpStatus.OK);
     }
+
     @PostMapping
     ResponseEntity<User> create(@RequestBody User user) {
         return new ResponseEntity<>(userService.create(user), HttpStatus.CREATED);
