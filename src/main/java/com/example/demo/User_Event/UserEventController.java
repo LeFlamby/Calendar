@@ -29,6 +29,22 @@ public class UserEventController {
             return new ResponseEntity<>(response,  HttpStatus.BAD_REQUEST);
         }
     }
+
+    @DeleteMapping("/{eventId}/user/{userId}")
+    ResponseEntity<Map<String, String>> unbindEventToUser(@PathVariable Long eventId, @PathVariable Long userId) {
+        Map<String, String> response = new HashMap<>();
+
+        try {
+            userEventService.unbindEventToUser(eventId, userId) ;
+            response.put("Result" , "Event successfully unbound to user");
+            return new ResponseEntity<>(response , HttpStatus.OK);
+        } catch (Exception e) {
+            response.put( "Result" , e.getMessage());
+            return new ResponseEntity<>(response,  HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
 }
 
 

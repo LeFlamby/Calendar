@@ -26,7 +26,16 @@ public class UserEventService {
         userRepository.save(user);
     }
 
+    public void unbindEventToUser(Long eventId, Long userId) {
+        Event event = eventService.getById(eventId);
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found with ID: " + userId));
+
+        user.getEvents().remove(event);
+        userRepository.save(user);
+        eventService.delete(eventId);
     }
+}
 
 
 
